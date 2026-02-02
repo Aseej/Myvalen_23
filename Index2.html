@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 🌸</title>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: #ffe6f0;
+    padding: 20px;
+}
+.hidden { display: none; }
+button {
+    padding: 10px 18px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ff99c8;
+    color: white;
+    cursor: pointer;
+}
+button:hover { background-color: #ff6699; }
+img { max-width: 80%; margin-top: 15px; border-radius: 15px; }
+.caption { color: #ff3399; font-size: 16px; margin-top: 5px; }
+</style>
+</head>
+<body>
+
+<!-- Intro Page -->
+<div id="intro">
+    <p style="font-size:18px; line-height:1.8;">
+        Hey Inès… take a slow breath 🌸<br>
+        Read this without rushing.
+    </p>
+    <img src="bubu.gif" alt="dudu hugging" width="150">
+    <p style="font-size:18px; margin-top:15px;">
+        Something honest, made quietly… just for you.
+    </p>
+    <button onclick="startSlideshow()">Next ➡️</button>
+</div>
+
+<!-- Slideshow Page -->
+<div id="slideshow" class="hidden">
+    <img id="slideImg" src="" alt="Her photo">
+    <p id="slideCaption" class="caption"></p>
+    <button id="nextSlideBtn" class="hidden" onclick="showQuestion()">Next ➡️</button>
+</div>
+
+<!-- Question Page -->
+<div id="question" class="hidden">
+    <img src="p3.jpg" alt="My lady's beautiful smile" width="200" style="border-radius:15px; margin-bottom:15px;">
+    <p class="caption">My lady’s beautiful smile 🥰💗</p>
+    <p style="font-size:18px; line-height:1.8;">
+        So… I was wondering 🥺  
+        would you like to be my Valentine?
+    </p>
+    <button onclick="yesClicked()">Yes 💗</button>
+    <button onclick="noClicked()">No 🙈</button>
+</div>
+
+<!-- No Response -->
+<div id="noBox" class="hidden">
+    <p style="font-size:18px;">
+        Oh… what? 😭 Please don’t break my heart like that 🥺
+    </p>
+    <p style="font-size:16px; margin-top:5px;">
+         maybe you want to try again? 😉
+    </p>
+    <img src="dudu1.gif" alt="dudu sad" width="120">
+    <br>
+    <button onclick="goBack()">Back 🔙</button>
+</div>
+
+<!-- Yes Response -->
+<div id="yesBox" class="hidden">
+    <img src="dudu.gif" alt="dudu happy" width="90">
+    <img src="bubu.gif" alt="bubu happy" width="90">
+    <p style="font-size:18px; line-height:1.9; margin-top:20px;">
+        Thank you… really.
+    </p>
+    <p style="font-size:17px; line-height:1.9;">
+        I don’t say things perfectly. Sometimes I get tired, sometimes I fall asleep,  
+        sometimes I don’t explain myself the right way.
+    </p>
+    <p style="font-size:17px; line-height:1.9;">
+        But one thing is very clear to me —  
+        you matter to me in a way that feels calm, not forced… not rushed.
+    </p>
+    <p style="font-size:17px; line-height:1.9;">
+        I just want to choose you, gently, every day.
+    </p>
+    <p style="font-size:18px; line-height:1.9;">
+        If February is the month of love,  
+        then I want to walk through it with you — honestly, patiently, and with a soft heart.
+    </p>
+    <p style="font-size:18px;">
+        Merci d’être toi 🌸<br>
+        Will you stay my Valentine? 💗
+    </p>
+</div>
+
+<script>
+/* Slideshow setup */
+const photos = [
+    {src:"p1.jpg", caption:"Your smile lights up my day 🥰"},
+    {src:"p2.jpg", caption:"Every moment with you feels magical 💗"
+    , caption:"I love seeing you happy 🥺"},
+];
+let currentSlide = 0;
+
+function startSlideshow() {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('slideshow').style.display = 'block';
+    showSlide();
+}
+
+function showSlide() {
+    if(currentSlide < photos.length) {
+        document.getElementById('slideImg').src = photos[currentSlide].src;
+        document.getElementById('slideCaption').innerText = photos[currentSlide].caption;
+        currentSlide++;
+        setTimeout(showSlide, 2500); // auto next photo every 2.5s
+    } else {
+        // Show Next button at last slide
+        document.getElementById('nextSlideBtn').classList.remove('hidden');
+    }
+}
+
+/* Valentine question */
+function showQuestion() {
+    document.getElementById('slideshow').style.display = 'none';
+    document.getElementById('question').style.display = 'block';
+}
+
+function yesClicked() {
+    document.getElementById('question').style.display = 'none';
+    document.getElementById('yesBox').style.display = 'block';
+}
+
+function noClicked() {
+    document.getElementById('question').style.display = 'none';
+    document.getElementById('noBox').style.display = 'block';
+}
+
+function goBack() {
+    document.getElementById('noBox').style.display = 'none';
+    document.getElementById('question').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
